@@ -26,4 +26,4 @@ jobs:
       - name: Build shell
         run: |
           ./mvnw -Pnative -DskipTests clean spring-boot:build-image
-          docker tag 
+          docker push dashaun/spring-office-hours-helper:latest
