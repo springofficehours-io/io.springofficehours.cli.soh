@@ -54,6 +54,7 @@
 							<BP_SPRING_CLOUD_BINDINGS_DISABLED>true</BP_SPRING_CLOUD_BINDINGS_DISABLED>
 							<BP_BINARY_COMPRESSION_METHOD>upx</BP_BINARY_COMPRESSION_METHOD>
 						</env>
+						<name>dashaun/spring-office-hours-helper:latest</name>
 					</image>
 				</configuration>
 			</plugin>

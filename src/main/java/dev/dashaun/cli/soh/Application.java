@@ -54,39 +54,6 @@ record ImageCommands() {
 
     private static final int LEFT_PAD = 60;
     private static final int BOTTOM_PAD = 60;
-    
-    @ShellMethod("return version")
-    public String version(){
-        return "Version 1.0.0";
-    }
-
-    @ShellComponent
-    public class CommandDemo {
-
-        @ShellMethod(value = "This command is used to greet a user", prefix = "-")
-        public void greet(
-                @ShellOption(value = { "name" }, help = "Give the name to great", defaultValue = "User") String name,
-                @ShellOption(value = { "city" }, help = "Give the city name you are from") String city
-        ) {
-
-            String message = "Hello "+name;
-            if(city!=null && !city.isEmpty()) {
-                message+=", I'm from "+city;
-            }
-
-            System.out.println(message);
-        }
-
-    }
-
-    @ShellComponent
-    public class Cli {
-
-        @ShellMethod("Say my name")
-        public String hi(@ShellOption(value = {"name"}) String arg1){
-            return "Hi " + arg1 + "!!";
-        }
-    }
 
     @ShellMethod("create episode image from template and text")
     @ShellMethodAvailability("templateFile")
@@ -109,7 +76,6 @@ record ImageCommands() {
         } catch (IOException ioException) {
             return "There was a problem: " + ioException.getMessage();
         }
-
         return "Success";
     }
 
