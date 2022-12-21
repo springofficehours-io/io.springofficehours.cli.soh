@@ -11,19 +11,22 @@ git checkout -b episode1000
 hugo new --kind soh tv/spring-office-hours/1000
 docker run -it -v ${PWD}/content:/workspace/content dashaun/spring-office-hours-helper:latest help episode-images
 ```
->NAME
->episode-images - create episode image from template and text
->
->SYNOPSIS
->episode-images --text String --path String
->
->OPTIONS
->--text String
->[Optional, default = Episode 0000]
->
->       --path String
->       [Optional, default = ./content/tv/spring-office-hours/example.png]
+Shows the options for the command:
+```text
+NAME
+episode-images - create episode image from template and text
 
+SYNOPSIS
+episode-images --text String --path String
+
+OPTIONS
+--text String
+[Optional, default = Episode 0000]
+
+--path String
+[Optional, default = ./content/tv/spring-office-hours/example.png]
+```
+Run the command:
 ```bash
 docker run \
 -it -v ${PWD}/content:/workspace/content \
