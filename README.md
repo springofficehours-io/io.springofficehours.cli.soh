@@ -41,19 +41,13 @@ The resulting image will look like this:
 
 ## Background
 
-Started developing this with Spring Boot 2.7 and Spring-Native.
-
-###
-It uses javax.imageio.ImageIO
-> Adding the static call to scan for plugins fixed my AOT processing issues
-
-###
-It uses java.awt.* which doesn't work, yet, with GraalVM on macOS. So I decided to create a docker image (linux) that can be used on Mac, Linux, Windows, to work around that limitation.
-
-Using java.awt.* requires the use of the "full" builder.
+- Started developing this with Spring Boot 2.7 and Spring-Native.
+- It uses javax.imageio.ImageIO, adding the static call to scan for plugins fixed my AOT processing issues
+- It uses java.awt.* which doesn't work, yet, with GraalVM on macOS. So I decided to create a docker image (linux) that can be used on Mac, Linux, Windows, to work around that limitation.
+- Using java.awt.* requires the use of the "full" builder.
 
 ## TODO
-Command line options to consider:
+1. Command line options to consider:
 - Episode number
 - Episode Title
 - Guest
@@ -61,4 +55,4 @@ Command line options to consider:
 - Time
 - Description
 
-Make the docker run cleaner, more like CLI experience, hide crufty logs
+2. Make the docker run cleaner, more like CLI experience, hide crufty logs
