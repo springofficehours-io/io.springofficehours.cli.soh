@@ -8,6 +8,7 @@ import org.springframework.shell.Availability;
 import org.springframework.shell.jline.PromptProvider;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+
 import org.springframework.shell.standard.ShellMethodAvailability;
 import org.springframework.shell.standard.ShellOption;
 import org.springframework.stereotype.Component;
@@ -21,9 +22,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+
 @SpringBootApplication
 public class Application {
 
+    static {
+        ImageIO.scanForPlugins();
+    }
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -31,7 +36,7 @@ public class Application {
 }
 
 @Component
-class CustomPromptProvider implements PromptProvider {
+record CustomPromptProvider() implements PromptProvider {
 
     @Override
     public AttributedString getPrompt() {
@@ -42,17 +47,50 @@ class CustomPromptProvider implements PromptProvider {
 }
 
 @ShellComponent
-class ImageCommands {
+record ImageCommands() {
 
     private static final String FONT = "HWT-Art-W00-Regular.ttf";
     private static final String TEMPLATE = "spring-office-hours-blank.png";
 
     private static final int LEFT_PAD = 60;
     private static final int BOTTOM_PAD = 60;
+    
+    @ShellMethod("return version")
+    public String version(){
+        return "Version 1.0.0";
+    }
+
+    @ShellComponent
+    public class CommandDemo {
+
+        @ShellMethod(value = "This command is used to greet a user", prefix = "-")
+        public void greet(
+                @ShellOption(value = { "name" }, help = "Give the name to great", defaultValue = "User") String name,
+                @ShellOption(value = { "city" }, help = "Give the city name you are from") String city
+        ) {
+
+            String message = "Hello "+name;
+            if(city!=null && !city.isEmpty()) {
+                message+=", I'm from "+city;
+            }
+
+            System.out.println(message);
+        }
+
+    }
+
+    @ShellComponent
+    public class Cli {
+
+        @ShellMethod("Say my name")
+        public String hi(@ShellOption(value = {"name"}) String arg1){
+            return "Hi " + arg1 + "!!";
+        }
+    }
 
     @ShellMethod("create episode image from template and text")
     @ShellMethodAvailability("templateFile")
-    public String episodeImages(@ShellOption(defaultValue = "Episode 0000") String text, @ShellOption(defaultValue = "./output.png") String path) throws IOException,FontFormatException {
+    public String episodeImages(@ShellOption(defaultValue = "Episode 0000") String text, @ShellOption(defaultValue = "./content/tv/spring-office-hours/example.png") String path) throws FontFormatException {
         try {
             BufferedImage image = ImageIO.read(template());
             Font font = fit(getFont(), text, image);
@@ -63,16 +101,14 @@ class ImageCommands {
             Graphics g = image.getGraphics();
 
             FontMetrics metrics = g.getFontMetrics(font);
-            int positionX = LEFT_PAD;
             int positionY = (image.getHeight() - metrics.getHeight() - BOTTOM_PAD) + metrics.getAscent();
 
-            g.drawString(attributedText.getIterator(), positionX, positionY);
+            g.drawString(attributedText.getIterator(), LEFT_PAD, positionY);
 
             ImageIO.write(image, "png", new File(path));
         } catch (IOException ioException) {
             return "There was a problem: " + ioException.getMessage();
         }
-
 
         return "Success";
     }
@@ -118,8 +154,8 @@ class ImageCommands {
     private Font getFont() throws IOException, FontFormatException {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream is = classLoader.getResourceAsStream(FONT);
+        assert is != null;
         Font ttf = Font.createFont(Font.TRUETYPE_FONT, is);
-        System.out.println(ttf.getSize2D());
-        return ttf.deriveFont(ttf.getSize2D()*80);
+        return ttf.deriveFont(ttf.getSize2D() * 80);
     }
 }
