@@ -7,7 +7,7 @@ This is a CLI for updating [Spring Office Hours](https://bit.ly/spring-office-ho
 ```bash
 git clone https://github.com/vmware-tanzu/tanzu-dev-portal.git
 cd tanzu-dev-portal
-git checkout -b episode999
+git checkout -b episode1000
 hugo new --kind soh tv/spring-office-hours/1000
 docker run -it -v ${PWD}/content:/workspace/content dashaun/spring-office-hours-helper:latest help episode-images
 ```
