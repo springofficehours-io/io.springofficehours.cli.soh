@@ -1,3 +1,8 @@
+image:
+  service:
+#    url: https://image-service.delightfulgrass-b9313e54.eastus.azurecontainerapps.io
+    url: http://localhost:8080/
+  
 logging:
   level:
     root: 'off'
@@ -5,3 +10,7 @@ logging:
 spring:
   main:
     banner-mode: 'off'
+    web-application-type: 'NONE'
+  shell:
+    history:
+      enabled: 'false'  
