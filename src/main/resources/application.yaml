@@ -1,7 +1,6 @@
 image:
   service:
-#    url: https://image-service.delightfulgrass-b9313e54.eastus.azurecontainerapps.io
-    url: http://localhost:8080/
+    url: https://image-service.springofficehours.io
   
 logging:
   level:
