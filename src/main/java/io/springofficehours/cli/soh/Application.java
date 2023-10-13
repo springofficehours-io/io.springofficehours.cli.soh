@@ -165,7 +165,7 @@ class ImageCommands implements HealthIndicator {
 				.getCustomSpringOfficeHours("Episode: %s - %s".formatted(Integer.valueOf(episodeNumber), title));
 			Files.write(new File("%s/images/%s.png".formatted(path, episodeNumber)).toPath(), image);
 			writeStringToFile(showTemplate.formatted(date, time, date, date, Integer.valueOf(episodeNumber), title,
-			episodeNumber, youTubeId), new File("%s/index.md".formatted(path)));
+					episodeNumber, youTubeId), new File("%s/index.md".formatted(path)));
 		}
 		catch (IOException ioe) {
 			return "There was a problem: " + ioe.getMessage();
