@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.1.4</version>
+    <version>3.2.0</version>
     <relativePath></relativePath>
   </parent>
   <groupId>dev.dashaun.cli</groupId>
@@ -13,7 +13,7 @@
   <version>0</version>
   <name>${project.groupId}:${project.artifactId}</name>
   <properties>
-    <spring-shell.version>3.1.1</spring-shell.version>
+    <spring-shell.version>3.1.6</spring-shell.version>
     <java.version>21</java.version>
   </properties>
   <dependencyManagement>
@@ -31,7 +31,7 @@
     <dependency>
       <groupId>com.microsoft.playwright</groupId>
       <artifactId>playwright</artifactId>
-      <version>1.28.1</version>
+      <version>1.40.0</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -40,6 +40,11 @@
     <dependency>
       <groupId>org.springframework.shell</groupId>
       <artifactId>spring-shell-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

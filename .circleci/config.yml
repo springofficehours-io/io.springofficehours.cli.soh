@@ -24,7 +24,7 @@ jobs:
       - sdkman/setup-sdkman
       - sdkman/sdkman-install:
           candidate: java
-          version: 22.3.1.r17-grl
+          version: 21.0.1-graalce
       - run:
           name: "native compile"
           command: "./mvnw -Pnative clean native:compile"
@@ -41,7 +41,7 @@ jobs:
       - sdkman/setup-sdkman
       - sdkman/sdkman-install:
           candidate: java
-          version: 22.3.1.r17-grl
+          version: 21.0.1-graalce
       - run:
           name: "native compile"
           command: "sdk env && ./mvnw -Pnative clean native:compile -DskipTests"

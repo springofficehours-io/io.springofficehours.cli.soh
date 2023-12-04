@@ -12,4 +12,7 @@ spring:
     web-application-type: 'NONE'
   shell:
     history:
-      enabled: 'false'  
+      enabled: 'false'
+  threads:
+    virtual:
+      enabled: true  
