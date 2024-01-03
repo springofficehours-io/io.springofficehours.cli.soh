@@ -144,7 +144,7 @@ class ImageCommands implements HealthIndicator {
 	public String show(@ShellOption(defaultValue = "0000") String episodeNumber,
 			@ShellOption(defaultValue = "#TODO") String title, @ShellOption(defaultValue = "2023-06-09") String date,
 			@ShellOption(defaultValue = "#TODO") String youTubeId,
-			@ShellOption(defaultValue = "12:30:00-07:00") String time,
+			@ShellOption(defaultValue = "12:00:00-06:00") String time,
 			@ShellOption(defaultValue = "./content/tv/spring-office-hours") String baseDir) {
 		String path = "%s/%s".formatted(baseDir, episodeNumber);
 		String imagesPath = "%s/images".formatted(path);
@@ -161,11 +161,10 @@ class ImageCommands implements HealthIndicator {
 			}
 		}
 		try {
-			byte[] image = imageServiceClient
-				.getCustomSpringOfficeHours("Episode: %s - %s".formatted(Integer.valueOf(episodeNumber), title));
+			byte[] image = imageServiceClient.getCustomSpringOfficeHours("%s".formatted(title));
 			Files.write(new File("%s/images/%s.png".formatted(path, episodeNumber)).toPath(), image);
-			writeStringToFile(showTemplate.formatted(date, time, date, date, Integer.valueOf(episodeNumber), title,
-					episodeNumber, youTubeId), new File("%s/index.md".formatted(path)));
+			writeStringToFile(showTemplate.formatted(date, time, date, date, title, episodeNumber, youTubeId),
+					new File("%s/index.md".formatted(path)));
 		}
 		catch (IOException ioe) {
 			return "There was a problem: " + ioe.getMessage();
@@ -204,7 +203,7 @@ class ImageCommands implements HealthIndicator {
 			lastmod: "%s"
 			PublishDate: "%s"
 			type: "tv-episode"
-			title: "Spring Office Hours: Episode %s - %s"
+			title: "Spring Office Hours: %s"
 			episode: "%s"
 			explicit: 'no'
 			hosts:

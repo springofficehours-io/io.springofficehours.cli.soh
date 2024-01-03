@@ -8,8 +8,7 @@ This is a CLI for updating [Spring Office Hours](https://bit.ly/spring-office-ho
 git clone https://github.com/vmware-tanzu/tanzu-dev-portal.git
 cd tanzu-dev-portal
 git checkout -b episode1000
-hugo new --kind soh tv/spring-office-hours/1000
-docker run -it -v ${PWD}/content:/workspace/content dashaun/spring-office-hours-helper:latest help episode-images
+show --episodeNumber 1000 --title "S3E1 - Spring Into The New Year" --date "2023-01-02" --youTubeId "9zUaIiI47nc"
 ```
 Shows the options for the command:
 ```text
