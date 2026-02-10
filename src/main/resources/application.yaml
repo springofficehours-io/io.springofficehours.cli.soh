@@ -1,6 +1,6 @@
 image:
   service:
-    url: https://image-service.springofficehours.io
+    url: http://localhost:8080
   
 logging:
   level:
@@ -16,3 +16,5 @@ spring:
   threads:
     virtual:
       enabled: true  
+  jackson:
+    use-jackson2-defaults: true

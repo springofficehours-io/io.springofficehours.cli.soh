@@ -4,3 +4,11 @@ spring:
   threads:
     virtual:
       enabled: true
+  jackson:
+    use-jackson2-defaults: true
+management:
+  endpoint:
+    health:
+      probes:
+        # TODO [Advisor]: Liveness and readiness probes are now enabled by default in Spring Boot 4.0. If you do not need those probes, keep this property. Otherwise, delete this property to adopt the new defaults. See https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#liveness-and-readiness-probes
+        enabled: false

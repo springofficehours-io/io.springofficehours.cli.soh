@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.0</version>
+    <version>4.0.2</version>
     <relativePath></relativePath>
   </parent>
   <groupId>io.springofficehours.cli</groupId>
@@ -13,8 +13,8 @@
   <version>0</version>
   <name>${project.groupId}:${project.artifactId}</name>
   <properties>
-    <spring-shell.version>3.1.6</spring-shell.version>
-    <java.version>21</java.version>
+    <spring-shell.version>4.0.1</spring-shell.version>
+    <java.version>25</java.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -35,11 +35,29 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-jackson2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webclient</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-jackson</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework.shell</groupId>
       <artifactId>spring-shell-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.shell</groupId>
+      <artifactId>spring-shell-jline</artifactId>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>
@@ -49,6 +67,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-jackson</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
